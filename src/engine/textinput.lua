@@ -39,7 +39,7 @@ self.pressed_callback = nil
 self.text_callback = nil
 
 ---@param tbl string[]
----@param options TextInput.inputOptions?
+---@param options TextInputOptions?
 function TextInput.attachInput(tbl, options)
     Kristal.showCursor()
     self.active = true
@@ -76,16 +76,16 @@ function TextInput.clear()
     self.reset(false)
 end
 
----@class TextInput.inputOptions
+---@class TextInputOptions
 ---@field multiline boolean?
 ---@field enter_submits boolean?
 ---@field clear_after_submit boolean?
 ---@field text_restriction (fun(char:string):string|boolean)?
 
----@param options TextInput.inputOptions|boolean|nil
+---@param options TextInputOptions|boolean|nil
 function TextInput.reset(options)
     if options ~= false then
-        options = options or {} --[[@as TextInput.inputOptions]]
+        options = options or {} --[[@as TextInputOptions]]
         -- Our defaults should allow text editor-like input
         if options.multiline          == nil then options.multiline          = true  end
         if options.enter_submits      == nil then options.enter_submits      = false end
@@ -643,14 +643,14 @@ function TextInput.insertString(str)
     --self.cursor_x = self.cursor_y + utf8.len(str)
 end
 
----@class TextInput.drawOptions
+---@class TextInputDrawOptions
 ---@field x number?
 ---@field y number?
 ---@field font love.Font?
 ---@field get_prefix (fun(prefix:"single"|"start"|"end"|"middle"):string)?
 ---@field print fun(text:string, x:number, y:number)?
 
----@param options TextInput.drawOptions
+---@param options TextInputDrawOptions
 function TextInput.draw(options)
     local off_x = options["x"] or 0
     local off_y = options["y"] or 0

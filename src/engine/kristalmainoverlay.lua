@@ -1,12 +1,12 @@
----@class Kristal.Overlay
-local Overlay = {}
+---@class KristalMainOverlay
+local KristalMainOverlay = {}
 
 ---@param val boolean
-function Overlay.setLoading(val)
-    Overlay.loading = val
+function KristalMainOverlay.setLoading(val)
+    KristalMainOverlay.loading = val
 end
 
-function Overlay:init()
+function KristalMainOverlay:init()
     self.quit_frames = {
         love.graphics.newImage("assets/sprites/ui/quit_1.png"),
         love.graphics.newImage("assets/sprites/ui/quit_2.png"),
@@ -35,7 +35,7 @@ function Overlay:init()
     self.quit_release = false
 end
 
-function Overlay:update()
+function KristalMainOverlay:update()
     if self.loading then
         if self.load_alpha < 1 then
             self.load_alpha = math.min(1, self.load_alpha + DT / 0.25)
@@ -77,7 +77,7 @@ function Overlay:update()
     end
 end
 
-function Overlay:draw()
+function KristalMainOverlay:draw()
     -- Draw the quit text
     love.graphics.push()
     love.graphics.scale(2)
@@ -136,4 +136,4 @@ function Overlay:draw()
     Draw.setColor(1, 1, 1, 1)
 end
 
-return Overlay
+return KristalMainOverlay

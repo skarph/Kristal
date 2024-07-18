@@ -1,4 +1,4 @@
----@class Kristal.Mods
+---@class ModManager
 ---
 ---@field loaded boolean
 ---@field list table[]
@@ -6,12 +6,12 @@
 ---@field named table<string, string>
 ---@field failed_mods table[]
 ---
-local Mods = {}
-local self = Mods
+local ModManager = {}
+local self = ModManager
 
 -- TODO: Document mod data
 
-function Mods.clear()
+function ModManager.clear()
     self.loaded = false
     self.list = {}
     self.data = {}
@@ -21,7 +21,7 @@ end
 
 ---@param data table
 ---@param failed_mods table[]
-function Mods.loadData(data, failed_mods)
+function ModManager.loadData(data, failed_mods)
     self.failed_mods = failed_mods or {}
     for mod_id,mod_data in pairs(data) do
         if self.data[mod_id] then
@@ -72,7 +72,7 @@ function Mods.loadData(data, failed_mods)
     Input:loadBinds()
 end
 
-function Mods.sortLibraries(mod)
+function ModManager.sortLibraries(mod)
     local sorted = {}
 
     local unsorted = {}
@@ -128,19 +128,19 @@ function Mods.sortLibraries(mod)
 end
 
 ---@return table[]
-function Mods.getMods()
+function ModManager.getMods()
     return self.list or {}
 end
 
 ---@param id string
 ---@return table
-function Mods.getMod(id)
+function ModManager.getMod(id)
     return self.data[id] or (self.named[id] and self.data[self.named[id]])
 end
 
 ---@param id string
 ---@return table
-function Mods.getAndLoadMod(id)
+function ModManager.getAndLoadMod(id)
     local mod = self.getMod(id)
 
     if not mod.loaded_scripts then
@@ -162,8 +162,8 @@ end
 
 ---@param id string
 ---@return string
-function Mods.getName(id)
+function ModManager.getName(id)
     return self.data[id].name or id
 end
 
-return Mods
+return ModManager

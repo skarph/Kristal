@@ -2,7 +2,7 @@
 ---
 ---@field loaded boolean
 ---
----@field data Assets.data
+---@field data data__Assets
 ---
 ---@field frames_for table<string, {[1]: string, [2]: number}>
 ---@field texture_ids table<love.Image, string>
@@ -15,7 +15,7 @@
 local Assets = {}
 local self = Assets
 
----@class Assets.data
+---@class data__Assets
 ---@field texture table<string, love.Image>
 ---@field texture_data table<string, love.ImageData>
 ---@field frames table<string, love.Image[]>
@@ -34,7 +34,7 @@ Assets.saved_data = nil
 
 function Assets.clear()
     self.loaded = false
-    self.data = {
+    self.data = { --[[@as data__Assets]]
         texture = {},
         texture_data = {},
         frame_ids = {},
@@ -57,7 +57,7 @@ function Assets.clear()
     self.quads = {}
 end
 
----@param data Assets.data
+---@param data data__Assets
 function Assets.loadData(data)
     Utils.merge(self.data, data, true)
 
@@ -89,7 +89,7 @@ function Assets.restoreData()
     end
 end
 
----@param data Assets.data
+---@param data data__Assets
 function Assets.parseData(data)
     -- thread can't create images, we do it here
     for key,image_data in pairs(data.texture_data) do

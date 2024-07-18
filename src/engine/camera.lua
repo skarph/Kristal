@@ -10,7 +10,7 @@
 ---@field state string                        # The current camera state.
 ---@field state_manager StateManager          # Manages the camera state.
 ---
----@field mods table<string, Camera.modifier> # Camera modifiers (position, offset, bounds - smoothly transitioned between).
+---@field mods table<string, modifier__Camera> # Camera modifiers (position, offset, bounds - smoothly transitioned between).
 ---@field mod_order string[]                  # Order camera modifiers are processed in.
 ---@field updated_mods boolean                # Whether modifiers have been updated this frame.
 ---
@@ -45,7 +45,7 @@
 ---@overload fun(parent?:Object, x?:number, y?:number, width?:number, height?:number, keep_in_bounds?:boolean) : Camera
 local Camera = Class()
 
----@class Camera.modifier
+---@class modifier__Camera
 ---@field value any
 ---@field state string
 ---@field x boolean
@@ -569,7 +569,7 @@ function Camera:moveTo(x, y)
 end
 
 ---@param name string
----@param mod Camera.modifier
+---@param mod modifier__Camera
 ---@param x number
 ---@param y number
 ---@return number? x, number? y
