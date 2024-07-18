@@ -12,5 +12,5 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Generate docs with LDoc
-        uses: lunarmodules/ldoc@v0
+      - name: Lua LDoc
+        uses: lunarmodules/ldoc@v1.5.0
