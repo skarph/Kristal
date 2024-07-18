@@ -1,10 +1,10 @@
 on:
     pull_request:
       branches:
-      - main
+      - ldoc-test
     push:
       branches:
-      - main
+      - ldoc-test
 
 jobs:
   ldoc:
