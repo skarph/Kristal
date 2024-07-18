@@ -23,14 +23,14 @@ Draw._scissor_stack = {}
 
 Draw._shader_stack = {}
 
----@class Draw.canvasOptions
+---@class CanvasOptions
 ---@field clear boolean|nil
 ---@field stencil boolean|nil
 ---@field keep_transform boolean|nil
 
----@overload fun(options?: Draw.canvasOptions) : love.Canvas
----@overload fun(canvas: love.Canvas, options?: Draw.canvasOptions) : love.Canvas
----@overload fun(width: number, height: number, options?: Draw.canvasOptions) : love.Canvas
+---@overload fun(options?: CanvasOptions) : love.Canvas
+---@overload fun(canvas: love.Canvas, options?: CanvasOptions) : love.Canvas
+---@overload fun(width: number, height: number, options?: CanvasOptions) : love.Canvas
 function Draw.pushCanvas(...)
     local args = { ... }
     table.insert(self._canvas_stack, love.graphics.getCanvas())

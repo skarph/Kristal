@@ -2,8 +2,8 @@ local Kristal = {}
 
 if not HOTSWAPPING then
     Kristal.Config = {}
-    Kristal.Mods = require("src.engine.mods")
-    Kristal.Overlay = require("src.engine.overlay")
+    Kristal.Mods = require("src.engine.modmanager")
+    Kristal.Overlay = require("src.engine.kristalmainoverlay")
     Kristal.Shaders = require("src.engine.shaders")
     Kristal.States = {
         ["Loading"] = require("src.engine.loadstate"),
