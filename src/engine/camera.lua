@@ -45,12 +45,6 @@
 ---@overload fun(parent?:Object, x?:number, y?:number, width?:number, height?:number, keep_in_bounds?:boolean) : Camera
 local Camera = Class()
 
----@class modifier__Camera
----@field value any
----@field state string
----@field x boolean
----@field y boolean
-
 ---@private
 ---@param parent? Object
 ---@param x? number
