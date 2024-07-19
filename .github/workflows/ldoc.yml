@@ -1,3 +1,4 @@
+name: ldoc
 on:
     pull_request:
       branches:
@@ -6,6 +7,7 @@ on:
       branches:
       - ldoc-test
     workflow_dispatch:
+
 
 jobs:
   ldoc:
