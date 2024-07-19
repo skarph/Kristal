@@ -15,21 +15,6 @@
 local Assets = {}
 local self = Assets
 
----@class data__Assets
----@field texture table<string, love.Image>
----@field texture_data table<string, love.ImageData>
----@field frames table<string, love.Image[]>
----@field frame_ids table<string, string[]>
----@field fonts table<string, love.Font|{default: number, [number]: love.Font}>
----@field font_data table<string, love.Data>
----@field font_bmfont_data table<string, string>
----@field font_image_data table<string, love.ImageData>
----@field font_settings table<string, table>
----@field sound_data table<string, love.SoundData>
----@field music table<string, string>
----@field videos table<string, string>
----@field bubble_settings table<string, table>
-
 Assets.saved_data = nil
 
 function Assets.clear()
