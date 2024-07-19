@@ -5,6 +5,7 @@ on:
     push:
       branches:
       - ldoc-test
+    workflow_dispatch:
 
 jobs:
   ldoc:
