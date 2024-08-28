@@ -1,3 +1,6 @@
+local jsonb    = require 'json-beautify'
+local util     = require 'utility'
+
 print("BUILDING CUSTOM DOCS!")
 print('ok?', ws and vm and guide and getDesc and getLabel and jsonb and util and markdown and true)
 
@@ -18,6 +21,23 @@ export.makeDocObject['type'] = function(source, obj, has_seen)
         end
     end)
     table.sort(obj.fields, export.sortDoc)
+end
+
+export.serializeAndExport = function (docs, outputDir)
+    local jsonPath = outputDir .. '/doc.json'
+
+    --export to json
+    local old_jsonb_supportSparseArray = jsonb.supportSparseArray
+    jsonb.supportSparseArray = true
+    local jsonOk, jsonErr = util.saveFile(jsonPath, jsonb.beautify(docs))
+    jsonb.supportSparseArray = old_jsonb_supportSparseArray
+
+    --error checking save file
+    if( not (jsonOk) ) then
+        return false, {jsonPath}, {jsonErr}
+    end
+
+    return true, {jsonPath}
 end
 
 --[[local old_init = export.makeDocObject['INIT']
