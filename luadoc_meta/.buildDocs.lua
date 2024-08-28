@@ -1,6 +1,3 @@
-local jsonb    = require 'json-beautify'
-local util     = require 'utility'
-
 print("BUILDING CUSTOM DOCS!")
 print('ok?', ws and vm and guide and getDesc and getLabel and jsonb and util and markdown and true)
 
@@ -40,43 +37,21 @@ export.serializeAndExport = function (docs, outputDir)
     return true, {jsonPath}
 end
 
---[[local old_init = export.makeDocObject['INIT']
-export.makeDocObject['INIT'] = function(source, has_seen)
-    local result = old_init(source, has_seen)
-    result.snoopingas = true --inejectionsar wtest :)))
-    return result
-end]]
-
---[[
-function export.gatherGlobals(context)
-    local all_globals = vm.getAllGlobals()
-    local globals = {}
-    for _, g in pairs(all_globals) do
-        local guri = guide.getUri(g)
-        print(guri)
-        if not (guri:find(METAPATH)) then
-            table.insert(globals, g)
-        else
-            print("not", guri)
+local old_export_documentObject = export.documentObject
+function export.documentObject(source, has_seen)
+    if type(source) == 'table' and source.getSets then
+        for _, set in ipairs(source:getSets(ws.rootUri)) do
+            local ok, uri = pcall(guide.getUri, set)
+            if not ok then
+                return nil
+            end
+            --remove uri root (and prefix)
+            local local_file_uri = uri
+            local i, j = local_file_uri:find(DOC)
+            if not j then
+                return nil
+            end
         end
     end
-    return globals
+    return old_export_documentObject(source, has_seen)
 end
---]]
---[[
----Add config settings to JSON output.
----@param results table
-local function makeMetadata(results)
-    return {META = {
-        blaclist = export.blacklist,
-        commit = getCommit(fs.absolute(fs.path(DOC)):string()),
-        count = #results,
-        format = 'LuaLS | skarphtest',
-        root = fs.absolute(fs.path(DOC)):string(),
-        time = "KEEP_SHA"--os.time(os.date("!*t")),
-    }}
-end
-
-"docScriptPath": "/luadoc_meta/.buildDocs.lua"
-
-]]
