@@ -14,6 +14,6 @@ jobs:
           - env: 
                 KRISTAL_WEBSITE_REDEPLOY_WEBHOOK: ${{ secrets.KRISTAL_WEBSITE_REDEPLOY_WEBHOOK }}
             run: 
-                curl -X POST "$"
+                curl -X POST "$KRISTAL_WEBSITE_REDEPLOY_WEBHOOK"
     
 
