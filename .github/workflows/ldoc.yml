@@ -1,19 +1,19 @@
-name: ldoc
+name: Redeploy the Kristal Website with New Documentation
+
 on:
-    pull_request:
-      branches:
-      - ldoc-test
     push:
-      branches:
-      - ldoc-test
+        branches:
+        - ldoc-test
     workflow_dispatch:
 
 
 jobs:
-  ldoc:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Lua LDoc
-        uses: lunarmodules/ldoc@v1.5.0
+    redeploy-wiki:
+        runs-on: ubuntu-latest
+        steps:
+          - env: 
+                KRISTAL_WEBSITE_REDEPLOY_WEBHOOK: ${{ secrets.KRISTAL_WEBSITE_REDEPLOY_WEBHOOK }}
+            run: 
+                curl -X POST "$"
+    
+
